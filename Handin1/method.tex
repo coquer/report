@@ -1,0 +1,20 @@
+\section{Method}
+
+We started with identification of common patterns occurring in the sample sequences that we would use to test our eye tracker on. Based on these patterns we have then formed our ideas of how should the software perform the detection. The patterns we have observed are as follows:
+
+\begin{enumerate}
+
+\item All sequences are taken with an IR camera, therefore the image has low chromaticity, but high luminance response. Therefore color could not be used to detect the eye, only the intensity.
+\item Similarly, all sequences have resolution of 640x480 pixels, as a result of being taken with a web cam.
+\item In all sequences there is one and only one eye, even though blinks can occur, so no pupil is visible
+\item All sequences are shorter than 30 seconds
+
+\end{enumerate}
+
+We have built our eye tracker with these assumptions, so if any of them is broken (apart from 4.), our software will probably struggle to give a correct result. Another consideration we have made is that the performance is not the objective at this stage, so we have preferred solutions that are correct and complete over solutions that are fast. That being said, the software could still be optimized for performance and lower memory footprint removing a lot of repetition of the same calculations and code that has been introduced to enable parametrization of our partial functions.
+
+\subsection{Pupil Detection}
+
+\subsection{Iris Detection}
+
+\subsection{Glint Detection}
