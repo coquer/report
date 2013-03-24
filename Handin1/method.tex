@@ -48,10 +48,56 @@ Since the pupil is usually very dark, it is (in most cases) safe to assume that 
 	\label{fig:threshopen}
 \end{figure}
 
-After thesholding we perform opening. Opening is a morphological operation that consists of performing erosion followed by dilation. This cleans up the image, removing noise and speckles. You can see this in the Figure \ref{subfig:open}
+After thesholding we perform opening. Opening is a morphological operation that consists of performing erosion followed by dilation. This cleans up the image, removing noise and speckles. You can see this in the Figure \ref{subfig:open}.
 
+This gives us an image that is well suited for blob analysis. We perform this in two steps. First we remove all blobs which are bigger than 30\% of the image area or smaller than 0.2\% of the entire image. This removes blobs that are most likely not pupil. Second fit an ellipse to the contour and then we compare the ratio between the two radii of that ellipse. That removes all matches that are too elliptical. The pupil is usually more like a circle, but can be slightly elliptical when the user is looking to the side.
 
+The last step we perform is ordering, we order all detected ellipses by increasing extend. This ensures that the most contained blobs come first. In most cases this should prioritize well contained blobs (such as the pupil) over false positives, and all the other detection functions just take the first result from pupil detection.
 
 \subsection{Iris Detection}
+
+For iris detection we start with the position of the pupil detected previously. First we filter the image using the Sobel filter. We then use the filtered image to calculate orientation (Figure \ref{subfig:quiver}) and magnitude (Figure \ref{subfig:magnitude}) of the gradient image. 
+
+\begin{figure}[h!]
+	\centering
+	
+	\begin{subfigure}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Handin1/images/magnitude.png}
+		\caption{Magnitude}
+		\label{subfig:magnitude}
+	\end{subfigure}%
+	~
+	\begin{subfigure}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Handin1/images/quiver.png}
+		\caption{Orientation}
+		\label{subfig:quiver}
+	\end{subfigure}
+	
+	\caption{Gradient Image: Magnitude and Orientation}
+\end{figure}
+
+We then use the orientation and magnitude data to estimate the iris radius. We assume that the center of iris will be the same as the center of pupil, so we sample the circle defined by pupil on 30 locations and consider lines that originate between the center of the pupil and end at a distance 5x greater than the radius of the pupil. See Figure \ref{subfig:iris_samples} for reference, samples are represented as bright green lines. Also in the Figure \ref{subfig:iris_samples} we can see points where sample values for orientation and magnitude correspond to the right values, and therefore are potential candidates for iris boundary. These points are represented as cyan circles in the image. The corresponding magnitude has to be greater than 15 and orientation can be no more than  5 either way from the orientation of the sample line. For each of these points we record the distance from the pupil centre, if more than one point votes for the same radius, we increment the count for that radius. At the end of this process we take the radius with most votes and proclaim it the iris boundary (Shown as a purple circle in Figure \ref{subfig:iris_estimation}).
+
+\begin{figure}[h!]
+	\centering
+	
+	\begin{subfigure}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Handin1/images/iris_samples.png}
+		\caption{Samples}
+		\label{subfig:iris_samples}
+	\end{subfigure}%
+	~
+	\begin{subfigure}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Handin1/images/iris_estimation.png}
+		\caption{Estimation}
+		\label{subfig:iris_estimation}
+	\end{subfigure}
+	
+	\caption{Iris Estimation}
+\end{figure}
 
 \subsection{Glint Detection}
