@@ -2,4 +2,9 @@
 
 We were tasked with construction of a software eye tracker. In the following text we describe our approach to this challenge, the methods we used, and the results we have obtained.  We have built the eye tracker using Python and OpenCV as a toolkit. The purpose of the eye tracker is to correctly and accurately detect the eye (pupil, iris) and glints on the eye in every image where there is an eye and detect nothing if there is no eye present in the image.
 
+In general, eye tracker algorithms are reducing a huge amount of data (typical 640x480 RGB image is almost 1MB of uncompressed data) to just a few values representing the location and radius of pupil, iris and various glints. Therefore there must be very many ways of performing this reduction, some better than others. Our goal in this report is to describe an approach we have taken to solving this problem, what algorithms we have used and what observations and results we have achieved.
+
+As with any work, compromises have to be made and the time available to us for solving this problem is limited. Therefore at some point we must stop looking for more advanced improvements, even though this process could theoretically go on forever. In this report we present the results and interesting observations we have made during the process and evaluate how did our proposed solution perform.
+
+The strongest theme that we have adopted was that we wanted to build the tracker as robust as possible, without the need for per-sequence parametrization. It should work in all circumstances as well as possible. This is of course very hard.
 
