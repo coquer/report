@@ -8,3 +8,21 @@ On the other hand, we have selected only 5-8 frames per sequence (56 frames toge
 
 Unfortunately we cannot automatically test if a detection is correct, because we have no reference implementation, so the correctness still has to be evaluated manually. But what we can detect automatically is the number of detected results (i.e what percentage of images that contained eye have had at least something detected by our implementation). This can give us  at least preliminary results, if we assume that most of the detected pupils are correct, we should get a good idea about the results from this alone. Of course this does not mean that we can solely rely on this automatic testing and manual verification still has to be performed.
 
+\begin{tabular}{ |l|l|l|l| }
+\hline
+\multicolumn{4}{ |c| }{Evaluation} \\
+\hline
+Sequence & Frames Evaluated & Pupil Detected & Detected Correctly \\ \hline
+
+eye1.avi & 5 & 5 & 5 \\ \hline
+eye2.avi & 6 & 6 & 6 \\ \hline
+eye3.avi & 8 & 7 & 6 \\ \hline
+eye4.avi & 8 & 8 & 7 \\ \hline
+eye5.avi & 6 & 3 & 2 \\ \hline
+eye6.avi & 7 & 7 & 5 \\ \hline
+eye7.avi & 8 & 3 & 3 \\ \hline
+eye8.avi & 8 & 0 & 0 \\ \hline \hline
+
+Total & 56 & 39 (69.64\%) & 34 (60.71\%) \\ \hline
+
+\end{tabular}
