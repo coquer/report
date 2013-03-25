@@ -58,6 +58,8 @@ This gives us an image that is well suited for blob analysis. We perform this in
 
 The last step we perform is ordering, we order all detected ellipses by increasing extend. This ensures that the most contained blobs come first. In most cases this should prioritize well contained blobs (such as the pupil) over false positives, and all the other detection functions just take the first result from pupil detection.
 
+We have also implemented a failsafe mechanism, that, in absence of any pupils detected, can iteratively call the getPupils() function with lower values of k, which results in better performance in sequences with high contrast. In particular in sequence 8 this change alone has improved the detection rate from 0\% to 62.5\% in the testing frames.
+
 \subsection{Iris Detection}
 
 For iris detection we start with the position of the pupil detected previously. First we filter the image using the Sobel filter. We then use the filtered image to calculate orientation (Figure \ref{subfig:quiver}) and magnitude (Figure \ref{subfig:magnitude}) of the gradient image. 

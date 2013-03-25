@@ -16,15 +16,15 @@ Unfortunately we cannot automatically test if a detection is correct, because we
 		
 		eye1.avi 	& 5 	& 5 (100\%)	& 5 (100\%) \\
 		eye2.avi 	& 6 	& 6 (100\%)	& 6 (100\%) \\
-		eye3.avi 	& 8 	& 7 (87.5\%)	& 6 (75\%) \\
-		eye4.avi 	& 8 	& 8 (100\%)	& 7 (87.5\%) \\
-		eye5.avi 	& 6 	& 3 (50\%)	& 2 (33.3\%) \\
+		eye3.avi 	& 8 	& 8 (100\%)	& 5 (62.5\%) \\
+		eye4.avi 	& 8 	& 6 (75\%)	& 6 (75\%) \\
+		eye5.avi 	& 6 	& 5 (83.3\%)	& 3 (50\%) \\
 		eye6.avi 	& 7 	& 7 (100\%)	& 5 (71.43\%) \\
-		eye7.avi 	& 8 	& 3 (37.5\%)	& 3 (37.5\%) \\
-		eye8.avi 	& 8 	& 0 (0\%)		& 0 (0\%) \\
+		eye7.avi 	& 8 	& 7 (87.5\%)	& 7 (87.5\%) \\
+		eye8.avi 	& 8 	& 5 (62.5\%)	& 5 (62.5\%) \\
 		
 		\hline
-		Total 	& 56 & 39 (69.64\%) & 34 (60.71\%) \\ 
+		Total 	& 56 & 49 (87.5\%) & 42 (75\%) \\ 
 		\hline
 	\end{tabular}
 	\caption{Semi-Automatic Evaluation of the Detection Algorithm}
@@ -45,4 +45,4 @@ False positives are cases where a pupil is detected in a place where it is not a
 A solution we have tried to combat this problem is overlaying a transparent-to-white radial gradient from the center of the image to suppress the dark areas around image edges. But what we found was that even though the number of detections in sequences that were most affected by the above described problem went up, the overall results over all of the sequences were worse. So we decided against that improvement. However it still might be warranted to selectively apply it to only some of the sequences, if it can be safely assumed that the pupil stays near the center of the frame and there are dark areas near the edges of the frame.
 
 \subsubsection{False Negatives}
-False negatives are when a pupil should have been detected, but was not. These cases can be caught by our automated testing, because all of the frames being tested should contain a pupil. This is of course very similar to the previous case with k-means, but these occur
+False negatives are when a pupil should have been detected, but was not. These cases can be caught by our automated testing, because all of the frames being tested should contain a pupil. This is of course very similar to the previous case with k-means, but we have to manage to limit this problem using the iterative lowering of k-means parameter.
