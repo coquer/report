@@ -103,20 +103,26 @@ We then use the orientation and magnitude data to estimate the iris radius. We a
 
 \subsection{Glint Detection}
 
-For the glint detection we compute k-means to a downsized grayscale image.  Since the glint can be consider a momentary flash of light on the eye, we assume that this will the lightest point with the first cluster. 
-There for we can use K-means to set the values for the thresholding functions, which is call next. After Thresholding we find the contours of the image.
-
-This give us an constant array from which we can calculate the area with in the preset parameter, after we calculate their centroid up to the third order from its shape. This give us back an accurate glint position for most of the frame. Figure \ref{fig:glint}
+Glint detection is in principle very similar to pupil detection, first we compute k-means to a downsized grayscale image. Since the glint can be considered a flash of light in the eye, we assume that this will the brightest point with the first cluster. 
+Therefore, we can use k-means to set the values for the thresholding functions, which are called next. After thresholding we find blobs in the image using contours. We then reject all blobs that are bigger than 0.1\% of the total image area. This ensures that we don't count big bright areas of the image as glints, since glints are usually small. As the last filter we reject all glints that have centers outside of the iris circle which we have calculated in the previous phase. This will leave us only with the glints inside the eye and nothing else.
 
 \begin{figure}[h!]
 	\centering
-		
+	
+	\begin{subfigure}[b]{0.5\textwidth}
+		\includegraphics[width=\textwidth]{Handin1/images/glitDetection.png}
+		\caption{Glint Detection}
+		\label{subfig:glints}
+	\end{subfigure}%
+	~
 	\begin{subfigure}[b]{0.5\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{Handin1/images/glitDetection.png}
-		\caption{Glint}
-		\label{subfig:glint}
-	\end{subfigure}%
+		\includegraphics[width=\textwidth]{Handin1/images/final.png}
+		\caption{Final Image}
+		\label{subfig:final}
+	\end{subfigure}
+	
+	\caption{Glint Detection Phase}
 \end{figure}
 
 
