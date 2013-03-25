@@ -100,4 +100,25 @@ We then use the orientation and magnitude data to estimate the iris radius. We a
 	\caption{Iris Estimation}
 \end{figure}
 
+
 \subsection{Glint Detection}
+
+For the glint detection we compute k-means to a downsized grayscale image.  Since the glint can be consider a momentary flash of light on the eye, we assume that this will the lightest point with the first cluster. 
+There for we can use K-means to set the values for the thresholding functions, which is call next. After Thresholding we find the contours of the image.
+
+This give us an constant array from which we can calculate the area with in the preset parameter, after we calculate their centroid up to the third order from its shape. This give us back an accurate glint position for most of the frame. Figure \ref{fig:glint}
+
+\begin{figure}[h!]
+	\centering
+		
+	\begin{subfigure}[b]{0.5\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{Handin1/images/glitDetection.png}
+		\caption{Glint}
+		\label{subfig:glint}
+	\end{subfigure}%
+\end{figure}
+
+
+
+
