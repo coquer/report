@@ -1,6 +1,6 @@
 \section{Method}
 
-We started identificating the common patterns occurring in the sample sequences that we would use to test our eye tracker on. Based on these patterns we have then formed our ideas of how should the software perform the detection. The patterns we have observed are as follows:
+We started identifying common patterns occurring in the sample sequences that we would use to test our eye tracker on. Based on these patterns we have then formed our ideas of how should the software perform the detection. The patterns we have observed are as follows:
 
 \begin{enumerate}
 
@@ -11,9 +11,9 @@ We started identificating the common patterns occurring in the sample sequences 
 
 \end{enumerate}
 
-We have built our eye tracker with these assumptions, so if any of the misbroken (apart from 4.) our software will probably struggle to give a correct result. Another consideration we have made is that the performance is not the objective at this stage, so we have preferred solutions that are correct and complete over solutions that are just fast. That being said, the software could still be optimized for performance and lower memory footprint removing a lot of repetition of the same calculations and code that has been introduced to enable parameterization of our partial functions.
+We have built our eye tracker with these assumptions, so if any of them is broken (apart from 4.), our software will probably struggle to give a correct result. Another consideration we have made is that the performance is not the objective at this stage, so we have preferred solutions that are correct and complete over solutions that just are fast. That being said, the software could still be optimized for performance and lower memory footprint removing a lot of repetition of the same calculations and code that has been introduced to enable parametrization of our partial functions.
 
-During our work we were looking for solutions that would require as few parameters as possible, ideally none. This has led us to use k-means to obtain parameters for thresholding?, which are quite volatile and trade them for parameters to k-means, which are far less volatile. In fact we have been able to use the single value for all sequences.
+During our work we were looking for solutions that would require as few parameters as possible, ideally none. This has led us to use k-means to obtain parameters for thresholding, which are quite volatile and trade them for parameters to k-means, which are far less volatile. In fact we have been able to use the single value for all sequences.
 
 Similarly we have looked at all improvements to the algorithm by comparing the results of our test (Described in Section 3 Results) to the best previously achieved result. If the proposed improvement was better in all cases (increased the number of correct detections) then it was accepted, if this was not the case, it was rejected.
 
